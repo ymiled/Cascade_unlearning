@@ -210,10 +210,10 @@ def prepare_text(batch,
         # use idx_to_evaluate-th point of batch for evaluation
         length = batch['input_ids'][idx_to_evaluate].shape[0]
         if batch_label == 'forget':
-            appended_post = tokenizer.decode(batch['input_ids'][idx_to_evaluate][0:(length-n_subtract_tokens)])
+            appended_post = tokenizer.decode(batch['input_ids'][idx_to_evaluate][0:(length-n_subtract_tokens)], skip_special_tokens=True)
         else:
             length_other = batch_other['input_ids'][idx_to_evaluate].shape[0]
-            appended_post = tokenizer.decode(batch_other['input_ids'][idx_to_evaluate][0:(length_other-n_subtract_tokens)])
+            appended_post = tokenizer.decode(batch_other['input_ids'][idx_to_evaluate][0:(length_other-n_subtract_tokens)], skip_special_tokens=True)
     if config.verbose:
         print('IDX to eval:', idx_to_evaluate)
         print('BATCH LABEL:', batch_label)
